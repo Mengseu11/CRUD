@@ -16,7 +16,7 @@
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-bold text-gray-700">📦 Product Dashboard</h1>
 
-      <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+      <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button"
         class="flex items-center gap-2 px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg text-sm">
         Add Product
       </button>
@@ -31,10 +31,10 @@
       <div class="flex justify-between mb-4">
         <!-- SEARCH INPUT -->
         <input id="searchInput" type="text" placeholder="Search product..."
-          class="px-4 py-2 border rounded-lg w-64 focus:ring-blue-500 focus:border-blue-500" onkeyup="handleSearch()" />
+          class="px-4 py-2 border rounded-lg w-64 focus:ring-blue-500 focus:border-blue-500" oninput="searchFilter()" />
 
         <!-- FILTER DROPDOWN -->
-        <select id="filterSelect" class="px-3 py-2 border rounded-lg bg-white w-48" onchange="handleFilter()">
+        <select id="filterSelect" class="px-3 py-2 border rounded-lg bg-white w-48" onchange="selectFilter()">
           <option value="all">All Categories</option>
           <option value="Laptop">Laptop</option>
           <option value="Phones">Phones</option>
@@ -46,10 +46,10 @@
         <thead class="text-xs uppercase bg-gray-100 text-gray-700">
           <tr>
             <th class="px-6 py-3">ID</th>
-            <th class="px-6 py-3">Product Name</th>
-            <th class="px-6 py-3">Color</th>
-            <th class="px-6 py-3">Category</th>
-            <th class="px-6 py-3">Price</th>
+            <th class="px-6 py-3">Name</th>
+            <th class="px-6 py-3">Email</th>
+            <th class="px-6 py-3">Phone</th>
+            <th class="px-6 py-3">Address</th>
             <th class="px-6 py-3 text-center">Actions</th>
           </tr>
         </thead>
@@ -95,10 +95,6 @@
               <input type="text" id="color" class="w-full p-2 border rounded-lg mt-1" placeholder="color" required />
             </div>
             <div>
-              <label class="text-sm font-medium">Model</label>
-              <input type="text" id="model" class="w-full p-2 border rounded-lg mt-1" placeholder="model" required />
-            </div>
-            <div>
               <label class="text-sm font-medium">Category</label>
               <select id="category" class="w-full p-2 border rounded-lg mt-1">
                 <option>Select category</option>
@@ -111,13 +107,19 @@
             
           </div>
 
-          <button type="submit" onclick="createProduct()" data-modal-hide="crud-modal" class="w-full mt-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg">
+          <button type="button" id="btnCreate" onclick="createProduct()" data-modal-hide="crud-modal" class="w-full mt-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg">
             Add Product
+          </button>
+          <button type="button" id="btnUpdate" onclick="updateProduct()" data-modal-hide="crud-modal" class="w-full mt-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg" style="display: none;">
+            Update Product
           </button>
         </form>
       </div>
     </div>
   </div>
+  <script>
+
+  </script>
   <script src="product-exercise.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="">
+        <form class="max-w-lg mx-auto border mt-20 p-10 rounded-2xl">
+            <div class="mb-5">
+                <label for="email" class="block mb-2.5 text-sm font-medium text-heading">Your email</label>
+                <input type="email" id="email" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="email" required />
+            </div>
+            <div class="mb-5">
+                <label for="password" class="block mb-2.5 text-sm font-medium text-heading">Your password</label>
+                <input type="password" id="password" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="password" required />
+            </div>
+            <!-- <div class="flex items-start mb-5">
+                <label for="remember" class="flex items-center h-5">
+                <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft" required />
+                <p class="ms-2 text-sm font-medium text-heading select-none">I agree with the <a href="#" class="text-fg-brand hover:underline">terms and conditions</a>.</p>
+                </label>
+            </div> -->
+            <div id="errorMessage"></div>
+            <button type="button" onclick="login()" class="text-white rounded-lg bg-blue-600 bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Submit</button>
+        </form>
+    </div>
+    
+</body>
+<script>
+    const email = document.getElementById('email')
+    const password = document.getElementById('password')
+    const errorMessage = document.getElementById('errorMessage')
+
+    const systemAccount = {
+        name : 'admin',
+        email : 'admin123@gmail.com',
+        password : 'admin1234'
+    }
+
+    function setCookie(key,value,time,unit){
+        let date = new Date()
+        let timeInMs = 0
+        if(unit === 'm'){
+        timeInMs =  time * 60 * 1000 // minutes
+        }else if (unit === 'h'){
+            timeInMs =  time * 60 * 60 * 1000 // hours
+        }else if (unit === 'd'){
+            timeInMs =  time * 24 * 60 * 60 * 1000 // hours
+        }
+        date.setTime(date.getTime() + timeInMs )
+        document.cookie = `${key}=${value}; expires=${date.toUTCString()}; path=/`
+    }
+    function login(){
+        const userEmail = email.value
+        const userPassword = password.value
+
+        if(userEmail === systemAccount.email && userPassword === systemAccount.password){
+            alert('Login success')
+            setCookie('name', systemAccount.name,1,'m')
+            setCookie('password',systemAccount.password,1,'m')
+            window.location.href = "index.html"
+        }else{
+            errorMessage.innerHTML = `<p style="color: red;">Incorrect username or password</p>`
+        }
+    }
+</script>
+</html>
